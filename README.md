@@ -36,16 +36,20 @@ cd spring-boot-aws-sns-sqs-ses
 
 ### Setup the infrastructure on localstack
 
-Sign Up for [LocalStack](https://app.localstack.cloud) and Copy/Generate you Auth Token
+Sign Up for [LocalStack](https://app.localstack.cloud) and Copy/Generate your Auth Token
 from  [here](https://app.localstack.cloud/settings/auth-tokens).
 Set Auth Token in variable ```LOCALSTACK_AUTH_TOKEN``` in file [docker-compose.yml](docker-compose.yml)
 
-Install AWS Cli.
+Install [AWS Cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 In your user home directory find folder ```.aws```.
 for windows ```C:\Users\deepak\.aws```
-ddd/create below contents to file ```credentials``` file
+add/create below contents to file ```credentials``` file
 
 ```
+[default]
+endpoint_url = http://localhost:4566
+aws_access_key_id = test
+aws_secret_access_key = test
 [localstack]
 endpoint_url = http://localhost:4566
 aws_access_key_id = test
@@ -56,6 +60,8 @@ aws_secret_access_key = test
 and add/create below contents to ```config``` file
 
 ```
+[default]
+region = us-east-1
 [localstack]
 region = us-east-1
 
