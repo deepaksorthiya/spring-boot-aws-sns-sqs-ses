@@ -28,7 +28,7 @@
     </scm>
     <properties>
         <java.version>21</java.version>
-        <awssdk.bom>2.31.40</awssdk.bom>
+        <awssdk.bom>2.31.49</awssdk.bom>
     </properties>
 
     <dependencyManagement>
