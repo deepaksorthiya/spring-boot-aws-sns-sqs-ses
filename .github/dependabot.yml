@@ -12,6 +12,9 @@ updates:
       interval: "daily"
       time: "23:59"
       timezone: "Asia/Calcutta"
+    ignore:
+      - dependency-name: "software.amazon.awssdk:bom"
+        update-types: [ "version-update:semver-patch" ]
   # Enable version updates for Github Action
   - package-ecosystem: "github-actions"
     directory: "/"
