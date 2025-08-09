@@ -95,7 +95,7 @@ cd spring-boot-aws-sns-sqs-ses
       ```
       [default]
       region = us-east-1
-      [localstack]
+      [profile localstack]
       region = us-east-1
       ```
 
