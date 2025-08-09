@@ -18,7 +18,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
 
   smtp:
-    image: mailhog/mailhog
+    image: axllent/mailpit
     ports:
       - "1025"
       - "8025:8025"

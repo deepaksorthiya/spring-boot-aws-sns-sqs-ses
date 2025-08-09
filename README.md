@@ -165,7 +165,7 @@ curl -s localhost:8080/process
 
 ### 5. Verify Email Delivery
 
-- **MailHog UI:** [http://localhost:8025/](http://localhost:8025/)
+- **MailPit UI:** [http://localhost:8025/](http://localhost:8025/)
 - **LocalStack SES endpoint:**
   ```sh
   curl -s localhost:4566/_localstack/ses | jq .
