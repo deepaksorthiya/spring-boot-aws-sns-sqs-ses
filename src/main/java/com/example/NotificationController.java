@@ -1,16 +1,13 @@
 package com.example;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
 
 
-@Controller
+@RestController
 public class NotificationController {
 
     private final ReceiveSendNotifications msgService;
@@ -21,24 +18,21 @@ public class NotificationController {
 
     // send emails for all parsable notifications
     @GetMapping("/process")
-    @ResponseBody
-    List<String> processNotifications(HttpServletRequest request, HttpServletResponse response) {
+    List<String> processNotifications() {
         return msgService.processNotifications();
     }
 
 
     //  Lists all message bodies
     @GetMapping("/list")
-    @ResponseBody
-    List<HashMap<String, String>> listMessages(HttpServletRequest request, HttpServletResponse response) {
+    List<HashMap<String, String>> listMessages() {
         return msgService.listMessages();
     }
 
 
     //  Purge the message queue
     @GetMapping("/purge")
-    @ResponseBody
-    void purgeQueue(HttpServletRequest request, HttpServletResponse response) {
+    void purgeQueue() {
         msgService.purgeQueue();
     }
 

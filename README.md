@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/terraform-infra-blueviolet?logo=terraform" alt="Terraform"/>
   </a>
   <a href="https://spring.io/projects/spring-boot">
-    <img src="https://img.shields.io/badge/spring--boot-3.5.0-brightgreen?logo=springboot" alt="Spring Boot"/>
+    <img src="https://img.shields.io/badge/spring--boot-3.5.8-brightgreen?logo=springboot" alt="Spring Boot"/>
   </a>
 </p>
 
@@ -51,11 +51,11 @@ using **LocalStack** for local development and **Terraform** for infrastructure 
 
 ## 🛠️ Requirements
 
-- **Git**: 2.49.0+
-- **Spring Boot**: 3.5.0
+- **Git**: 2.51+
+- **Spring Boot**: 3.5.8
 - **Maven**: 3.9+
-- **Java**: 24
-- **Docker Desktop**: 4.42.0+
+- **Java**: 25
+- **Docker Desktop**: 4.54+
 - **Terraform**: v1.11.3
 - **AWS CLI**: 2+
 

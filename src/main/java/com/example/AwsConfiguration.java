@@ -1,11 +1,14 @@
 package com.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import software.amazon.awssdk.auth.credentials.EnvironmentVariableCredentialsProvider;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityProviderClient;
+import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.ses.SesClient;
+import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sqs.SqsClient;
 
 import java.net.URI;
@@ -13,32 +16,74 @@ import java.net.URI;
 @Configuration
 public class AwsConfiguration {
 
-    private static final String ENDPOINT_URL = "http://localhost:4566";
+    private final ApplicationProperties applicationProperties;
 
-
-    private static final Region DEFAULT_REGION = Region.US_EAST_1;
+    public AwsConfiguration(ApplicationProperties applicationProperties) {
+        this.applicationProperties = applicationProperties;
+    }
 
     @Bean
     public SqsClient sqsClient() {
         return SqsClient.builder()
-                .region(DEFAULT_REGION)
-                .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
-                .applyMutation(builder -> {
-                    // TODO: conditional local-dev injection
-                    builder.endpointOverride(URI.create(ENDPOINT_URL));
-                })
+                .region(Region.of(applicationProperties.region()))
+                .endpointOverride(URI.create(applicationProperties.endpointUrl()))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create(applicationProperties.accessKey(), applicationProperties.secretKey())
+
+                        ))
                 .build();
     }
 
     @Bean
     public SesClient sesClient() {
         return SesClient.builder()
-                .region(DEFAULT_REGION)
-                .credentialsProvider(EnvironmentVariableCredentialsProvider.create())
-                .applyMutation(builder -> {
-                    // TODO: conditional local-dev injection
-                    builder.endpointOverride(URI.create(ENDPOINT_URL));
-                })
+                .region(Region.of(applicationProperties.region()))
+                .endpointOverride(URI.create(applicationProperties.endpointUrl()))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create(applicationProperties.accessKey(), applicationProperties.secretKey())
+
+                        ))
+                .build();
+    }
+
+    @Bean
+    public SnsClient snsClient() {
+        return SnsClient.builder()
+                .region(Region.of(applicationProperties.region()))
+                .endpointOverride(URI.create(applicationProperties.endpointUrl()))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create(applicationProperties.accessKey(), applicationProperties.secretKey())
+
+                        ))
+                .build();
+    }
+
+    @Bean
+    public S3Client s3Client() {
+        return S3Client.builder()
+                .region(Region.of(applicationProperties.region()))
+                .endpointOverride(URI.create(applicationProperties.endpointUrl()))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create(applicationProperties.accessKey(), applicationProperties.secretKey())
+
+                        ))
+                .build();
+    }
+
+    @Bean
+    public CognitoIdentityProviderClient cognitoClient() {
+        return CognitoIdentityProviderClient.builder()
+                .region(Region.of(applicationProperties.region()))
+                .endpointOverride(URI.create(applicationProperties.endpointUrl()))
+                .credentialsProvider(
+                        StaticCredentialsProvider.create(
+                                AwsBasicCredentials.create(applicationProperties.accessKey(), applicationProperties.secretKey())
+
+                        ))
                 .build();
     }
 
