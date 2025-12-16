@@ -1,6 +1,5 @@
 services:
   localstack:
-    container_name: "localstack-main"
     image: localstack/localstack-pro
     ports:
       - "127.0.0.1:4510-4559:4510-4559"  # external service port range
@@ -11,7 +10,7 @@ services:
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - LOCALSTACK_AUTH_TOKEN=
+      - LOCALSTACK_AUTH_TOKEN=ls-QAXO2582-LiSE-corU-cUZo-FIPA59505548
       - SMTP_HOST=smtp:1025
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
